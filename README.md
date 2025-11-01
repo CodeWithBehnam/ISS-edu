@@ -52,6 +52,24 @@ bun run preview
 
 ## Architecture
 
+### Application Flow
+
+```mermaid
+flowchart LR
+  subgraph Browser
+    UI[React UI] --> State[Zustand Store]
+    UI --> Query[React Query]
+    Query --> Worker[Orbit Worker]
+    Worker --> UI
+    State --> UI
+  end
+
+  Query -->|Live telemetry| TelemetryAPI[(wheretheiss.at)]
+  Query -->|TLE refresh| TLEAPI[(CelesTrak GP)]
+  Query --> Cache[(IndexedDB Cache)]
+  Cache --> Query
+```
+
 ### Data Sources (Free/Public APIs)
 
 - **Live ISS position**: [`wheretheiss.at`](https://wheretheiss.at/w/developer) — no auth required, rate-limited
@@ -119,6 +137,19 @@ iss-edu/
 2. For each epoch `t`: run `satellite.propagate(satrec, t)` → ECI position/velocity
 3. Convert to geodetic lat/lon/alt with `satellite.eciToGeodetic` (using GMST)
 4. Draw ground track by sampling every 10–15s and stitching polyline; break at IDL to avoid wrap
+
+```mermaid
+flowchart TD
+  start([Start]) --> parse[Parse TLE into satrec]
+  parse --> sample[Sample timestamps over orbit window]
+  sample --> propagate[Propagate to ECI coordinates]
+  propagate --> convert[Convert ECI to geodetic coordinates]
+  convert --> segment{Crosses IDL?}
+  segment -->|Yes| split[Split track segments]
+  split --> render[Render globe trail]
+  segment -->|No| render
+  render --> end([Update 3D scene])
+```
 
 ### B) Pass Predictions
 
