@@ -1,7 +1,10 @@
 # AGENTS OVERRIDE
 
 ## How to reply to user questions
-
+- analyse my request first, then based on it, attached personality to the request, create one clear goal, find the exact requirments, if needed use the ref and exa mcp server, find the accurate version for any package,, break down somplex into simple tasks and sub tasks.
+- DO not generate more than 300 lines of codes on each file
+- keep track of what you have learned from your mistake and record them on .learned.md file, create it if doesnt exist.
+- add needed constraint 
 - Always think hard, Plan, 5-6 tasks list each with 3 -4 sub tasks, then think again, validate, and implement
 - Always use Ref mcp server and EXA mcp server to get the information you need
 - Always use bun as package manager
@@ -38,4 +41,4 @@
 - Always use bun run test:e2e:ui:watch:debug:full:verbose to watch the e2e test UI and debug the tests and full output and verbose output
 
  
-for 3d earth use https://github.com/CesiumGS/cesium
+
