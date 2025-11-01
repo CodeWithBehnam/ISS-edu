@@ -148,7 +148,7 @@ flowchart TD
   segment -->|Yes| split[Split track segments]
   split --> render[Render globe trail]
   segment -->|No| render
-  render --> end([Update 3D scene])
+  render --> update([Update 3D scene])
 ```
 
 ### B) Pass Predictions
