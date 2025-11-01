@@ -1,0 +1,14 @@
+{
+  "navigation": {
+    "orbitalPanorama": "Panorama orbital",
+    "missionAcademy": "Academia de misiones",
+    "crewCapsule": "Cápsula de tripulaciones",
+    "educators": "Portal educativo"
+  },
+  "cta": {
+    "startLesson": "Iniciar lección",
+    "downloadWorksheet": "Descargar hoja de trabajo",
+    "switchToSpanish": "Cambiar a inglés"
+  }
+}
+

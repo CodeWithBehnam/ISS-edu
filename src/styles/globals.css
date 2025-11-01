@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  @apply text-slate-900 antialiased;
+  background: radial-gradient(120% 120% at 50% -10%, rgba(56, 189, 248, 0.25) 0%, rgba(14, 165, 233, 0) 60%),
+    linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%);
+}
+
+a {
+  @apply text-sky-600 underline-offset-4 hover:text-sky-700 hover:underline;
+}

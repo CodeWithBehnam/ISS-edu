@@ -1,0 +1,107 @@
+{
+  "slug": "aurora-choreography",
+  "title": {
+    "en": "Aurora Choreography from Orbit",
+    "es": "Coreografía de auroras desde órbita"
+  },
+  "summary": {
+    "en": "Explore how charged particles spark auroral light and how the ISS crew map geomagnetic storms in real time.",
+    "es": "Explora cómo las partículas cargadas provocan la luz auroral y cómo la tripulación de la EEI cartografía tormentas geomagnéticas en tiempo real."
+  },
+  "durationMinutes": 45,
+  "difficulty": "introductory",
+  "standards": ["GCSE Physics 4.4", "NGSS HS-ESS1-4"],
+  "segments": [
+    {
+      "heading": {
+        "en": "Scene Setting",
+        "es": "Escena inicial"
+      },
+      "body": {
+        "en": "The ISS orbits at ~420 km, skimming the boundary of Earth's magnetosphere. Charged particles guided by geomagnetic field lines collide with atmospheric gases, emitting the emerald and crimson curtains we call aurora. Aboard station, astronauts log each encounter with wide-angle cameras, feeding the hub's auroral overlay.",
+        "es": "La EEI orbita a unos 420 km, rozando el límite de la magnetosfera terrestre. Las partículas cargadas guiadas por las líneas del campo geomagnético chocan con los gases atmosféricos y emiten las cortinas esmeralda y carmesí que llamamos aurora. A bordo, los astronautas registran cada encuentro con cámaras de gran angular para alimentar la superposición auroral del hub."
+      },
+      "media": {
+        "type": "image",
+        "src": "https://images-assets.nasa.gov/image/iss066e078742/iss066e078742~orig.jpg",
+        "alt": {
+          "en": "Aurora ribbon photographed from the ISS cupola",
+          "es": "Cinta de aurora fotografiada desde la cúpula de la EEI"
+        }
+      }
+    },
+    {
+      "heading": {
+        "en": "Orbital Mechanics in Focus",
+        "es": "Mecánica orbital en foco"
+      },
+      "body": {
+        "en": "Auroral visibility peaks on high-latitude passes when the station's orbital plane intersects the geomagnetic polar cap. The hub toggles an aurora overlay sourced from NOAA SWPC, calibrated every 15 minutes against live telemetry to account for orbital precession.",
+        "es": "La visibilidad auroral alcanza su máximo en los sobrevuelos de latitudes altas cuando el plano orbital de la estación intersecta la casquete geomagnética. El hub activa una superposición de auroras del NOAA SWPC, calibrada cada 15 minutos con la telemetría para tener en cuenta la precesión orbital."
+      },
+      "knowledgeCheck": {
+        "question": {
+          "en": "Why does auroral intensity vary between consecutive ISS passes?",
+          "es": "¿Por qué varía la intensidad auroral entre pases consecutivos de la EEI?"
+        },
+        "choices": [
+          {
+            "id": "a",
+            "text": {
+              "en": "The station flies closer to the Sun on alternating orbits",
+              "es": "La estación vuela más cerca del Sol en órbitas alternas"
+            },
+            "correct": false
+          },
+          {
+            "id": "b",
+            "text": {
+              "en": "Geomagnetic conditions and orbital alignment shift, altering particle precipitation",
+              "es": "Las condiciones geomagnéticas y la alineación orbital cambian, modificando la precipitación de partículas"
+            },
+            "correct": true
+          },
+          {
+            "id": "c",
+            "text": {
+              "en": "City lights on Earth overpower the aurora each second pass",
+              "es": "Las luces de las ciudades en la Tierra eclipsan la aurora cada segundo pase"
+            },
+            "correct": false
+          }
+        ],
+        "rationale": {
+          "en": "Geomagnetic activity is dynamic; when the station's ground track cuts through the auroral oval under strong solar wind coupling, visibility intensifies. Precession also shifts the ground track across latitudes, modulating the viewing geometry.",
+          "es": "La actividad geomagnética es dinámica; cuando la trayectoria terrestre de la estación atraviesa el óvalo auroral bajo fuerte acoplamiento del viento solar, la visibilidad se intensifica. La precesión también desplaza la trayectoria terrestre a través de latitudes, modulando la geometría de observación."
+        }
+      }
+    },
+    {
+      "heading": {
+        "en": "Classroom Application",
+        "es": "Aplicación en el aula"
+      },
+      "body": {
+        "en": "Learners compare auroral forecasts with upcoming passes using the Pass Predictor and annotate divergences. Educators can download CSV exports to plot auroral probability against solar wind Kp index.",
+        "es": "El alumnado compara las previsiones aurorales con los próximos pases mediante el predictor y anota divergencias. El personal docente puede descargar exportaciones CSV para trazar la probabilidad auroral frente al índice Kp del viento solar."
+      }
+    }
+  ],
+  "resources": [
+    {
+      "label": {
+        "en": "Worksheet: Mapping aurora visibility",
+        "es": "Hoja de trabajo: Mapeo de visibilidad auroral"
+      },
+      "href": "https://orbital-learning-hub.example/resources/aurora-worksheet.pdf"
+    },
+    {
+      "label": {
+        "en": "NOAA SWPC aurora dashboard",
+        "es": "Panel de auroras del NOAA SWPC"
+      },
+      "href": "https://www.swpc.noaa.gov/products/aurora-viewers"
+    }
+  ]
+}
+
