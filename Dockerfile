@@ -8,7 +8,7 @@
 
 # ---- Stage 0: Node executable -----------------------------------------------
 # Only the node binary is borrowed from this image, for the build stage below.
-FROM docker.io/library/node:24.21.0-alpine3.24 AS node
+FROM docker.io/library/node:26.10.0-alpine3.24 AS node
 
 # ---- Stage 1: build ---------------------------------------------------------
 # Same Bun version as local development, so bun.lock resolves identically.
