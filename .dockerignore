@@ -1,0 +1,36 @@
+# Allowlist: nothing enters the build context unless it is listed below.
+# This keeps .git, .env files, editor state, Blender sources, screenshots and
+# local build output out of the image build, and keeps the context small.
+# If the build starts to fail on a missing file, add it here.
+*
+
+# Dependency manifests (the lockfile makes `bun install --frozen-lockfile` reproducible)
+!package.json
+!bun.lock
+
+# Build and tooling configuration read by `bun run build` (tsc + vite build)
+!index.html
+!vite.config.ts
+!tsconfig.json
+!tsconfig.node.json
+!postcss.config.js
+!tailwind.config.ts
+
+# Application sources, static assets and the files tsc type-checks
+!src
+!public
+!tests
+!scripts/build-countries.ts
+
+# Vite plugin helpers imported by vite.config.ts, if present
+!build
+
+# Runtime configuration copied into the nginx stage
+!deploy
+
+# Never send these, even from inside an allowed directory
+**/.DS_Store
+**/node_modules
+**/*.log
+**/.env
+**/.env.*

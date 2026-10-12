@@ -1,0 +1,67 @@
+# Dependabot version updates. Security updates are separate and are not delayed by `cooldown`.
+# Reference: https://docs.github.com/en/code-security/reference/supply-chain-security/dependabot-options-reference
+version: 2
+
+updates:
+  # Actions are pinned to full commit SHAs with a version comment. Dependabot bumps both together.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    # A week of delay lets the community spot a bad release before it reaches this repository.
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
+    commit-message:
+      prefix: "ci"
+
+  # Application dependencies. Dependabot reads bun.lock (the `bun` ecosystem needs Bun >= 1.1.39).
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    # A dependency joins the first group it matches, so the order below matters.
+    groups:
+      # three.js is pre-1.0, so its minor releases can break the renderer, and the React Three
+      # packages declare tight peer ranges on it. They are reviewed together and never mixed
+      # into the routine batch.
+      three-stack:
+        patterns:
+          - "three"
+          - "three-globe"
+          - "three-stdlib"
+          - "@types/three"
+          - "@react-three/*"
+      react-stack:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+      minor-and-patch:
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    commit-message:
+      prefix: "chore(deps)"
+
+  # Base images pinned in the Dockerfile (Bun build stage and the nginx runtime stage).
+  - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "chore(docker)"

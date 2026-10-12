@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Cute pastel space station">
+  <defs>
+    <clipPath id="tile">
+      <rect x="2" y="2" width="60" height="60" rx="18" />
+    </clipPath>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="#BDE0FE" />
+  <g clip-path="url(#tile)">
+    <circle cx="32" cy="76" r="36" fill="#7CC6E8" />
+    <ellipse cx="20" cy="53" rx="9" ry="3.6" fill="#7CC56B" />
+    <ellipse cx="46" cy="57" rx="6" ry="2.6" fill="#B9F3C9" />
+    <circle cx="12" cy="13" r="1.6" fill="#FFFDF8" />
+    <circle cx="53" cy="11" r="1.2" fill="#FFFDF8" />
+  </g>
+  <g transform="rotate(-18 32 30)">
+    <rect x="6" y="28.5" width="52" height="4" rx="2" fill="#6C6FA8" />
+    <g fill="#FFE29A" stroke="#F0C45E" stroke-width="1.5">
+      <rect x="8" y="13" width="10" height="13" rx="2.5" />
+      <rect x="8" y="34.5" width="10" height="13" rx="2.5" />
+      <rect x="46" y="13" width="10" height="13" rx="2.5" />
+      <rect x="46" y="34.5" width="10" height="13" rx="2.5" />
+    </g>
+    <line x1="32" y1="22" x2="32" y2="17" stroke="#6C6FA8" stroke-width="2" stroke-linecap="round" />
+    <circle cx="32" cy="15.5" r="2.4" fill="#FF8C7A" />
+    <rect x="22" y="22" width="20" height="17" rx="8.5" fill="#FFFDF8" stroke="#6C6FA8" stroke-width="2.5" />
+    <circle cx="28.5" cy="29.5" r="1.7" fill="#2B2D42" />
+    <circle cx="35.5" cy="29.5" r="1.7" fill="#2B2D42" />
+    <circle cx="26.2" cy="32.8" r="1.6" fill="#FFB4A2" />
+    <circle cx="37.8" cy="32.8" r="1.6" fill="#FFB4A2" />
+    <path d="M29.6 33.2q2.4 2.4 4.8 0" fill="none" stroke="#2B2D42" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+</svg>

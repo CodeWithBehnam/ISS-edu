@@ -1,0 +1,31 @@
+# Dependencies and build output
+node_modules
+dist
+out
+coverage
+*.log
+*.tsbuildinfo
+
+# Environment files: never commit real values. Keep the template if one is added.
+.env
+.env.*
+!.env.example
+
+# Test output
+test-results/
+playwright-report/
+
+# Other package managers' lockfiles: this project uses bun (bun.lock)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Blender's automatic backup of the model source
+*.blend1
+
+# Editor, OS and tool metadata
+.DS_Store
+.claude/
+.idea/
+.vscode/
+*.swp

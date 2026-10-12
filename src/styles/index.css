@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Pastel toy-diorama system; colours come from tailwind.config.ts via theme(). */
+@layer base {
+  :root {
+    color-scheme: light;
+    --toy-ink-shadow: 43 45 66;
+    --focus-ring: theme('colors.ink');
+  }
+
+  body {
+    @apply bg-cream font-sans text-base text-ink antialiased;
+    min-height: 100svh;
+    /* clip, not hidden, so sticky children keep working while the page never scrolls sideways. */
+    overflow-x: clip;
+  }
+
+  #root {
+    min-height: 100svh;
+  }
+
+  /* Soft pastel sky. Fixed pseudo-elements avoid background-attachment: fixed, which iOS ignores. */
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  body::before {
+    background-image:
+      radial-gradient(60% 50% at 10% 6%, theme('colors.peach / 75%'), transparent 70%),
+      radial-gradient(55% 48% at 92% 10%, theme('colors.sky / 70%'), transparent 70%),
+      radial-gradient(60% 55% at 50% 108%, theme('colors.mint / 50%'), transparent 70%),
+      radial-gradient(40% 40% at 88% 88%, theme('colors.lavender / 40%'), transparent 70%);
+  }
+
+  /* Faint isometric (triangular) dot lattice: two offset layers, tile height = 2 x row pitch. */
+  body::after {
+    background-image:
+      radial-gradient(circle, theme('colors.night / 22%') 1.2px, transparent 1.7px),
+      radial-gradient(circle, theme('colors.night / 22%') 1.2px, transparent 1.7px);
+    background-size: 34px 58.9px;
+    background-position:
+      0 0,
+      17px 29.45px;
+    -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 88%);
+    mask-image: radial-gradient(ellipse at 50% 45%, #000 25%, transparent 88%);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-ink;
+  }
+
+  /* Ink with a coral underline keeps 4.5:1 contrast, which the pastel blues cannot. */
+  a {
+    @apply text-ink underline decoration-coral decoration-2 underline-offset-4 transition-colors;
+  }
+
+  a:hover {
+    @apply decoration-ink;
+  }
+
+  ::selection {
+    background: theme('colors.butter');
+    color: theme('colors.ink');
+  }
+
+  /* Keyboard focus only: pointer users never see the ring. Ink, because coral is under 3:1 on every surface. */
+  :focus {
+    outline: none;
+  }
+
+  /* Modern browsers curve the outline to the element's own border-radius. */
+  :focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .toy-card {
+    @apply rounded-card border-2 border-line bg-paper/90 text-ink shadow-toy backdrop-blur-md;
+  }
+
+  /* Buttons are pills with a chunky bottom lip that squashes on press. */
+  .toy-btn {
+    --toy-edge: theme('colors.line');
+    @apply inline-flex select-none items-center justify-center gap-2 whitespace-nowrap rounded-full border-2 border-line bg-paper px-4 py-2 font-sans text-sm font-bold text-ink no-underline;
+    box-shadow:
+      0 4px 0 var(--toy-edge),
+      0 10px 20px -12px rgb(var(--toy-ink-shadow) / 0.28);
+    transition:
+      transform 90ms ease-out,
+      box-shadow 90ms ease-out,
+      background-color 150ms ease-out;
+    touch-action: manipulation;
+  }
+
+  .toy-btn:hover:not(:disabled) {
+    @apply bg-cream;
+  }
+
+  .toy-btn:active:not(:disabled) {
+    transform: translateY(2px);
+    box-shadow:
+      0 2px 0 var(--toy-edge),
+      0 4px 10px -6px rgb(var(--toy-ink-shadow) / 0.28);
+  }
+
+  .toy-btn:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  .toy-btn-coral {
+    --toy-edge: theme('colors.coral-deep');
+    @apply border-coral-deep bg-coral;
+  }
+
+  .toy-btn-coral:hover:not(:disabled) {
+    @apply bg-blush;
+  }
+
+  .toy-btn-sky {
+    --toy-edge: theme('colors.ocean');
+    @apply border-ocean bg-sky;
+  }
+
+  .toy-btn-sky:hover:not(:disabled) {
+    background-color: theme('colors.sky / 70%');
+  }
+
+  .toy-btn-ghost {
+    @apply border-transparent bg-transparent;
+    --toy-edge: transparent;
+    box-shadow: none;
+  }
+
+  .toy-btn-ghost:hover:not(:disabled) {
+    @apply bg-paper/70;
+  }
+
+  .toy-btn-ghost:active:not(:disabled) {
+    box-shadow: none;
+  }
+
+  .toy-btn-sm {
+    @apply gap-1.5 px-3 py-1.5 text-xs;
+  }
+
+  /* Square-ish round buttons for icons; 44px keeps touch targets comfortable. */
+  .toy-icon-btn {
+    @apply h-11 w-11 p-0;
+  }
+
+  .toy-icon-btn.toy-btn-sm {
+    @apply h-9 w-9 p-0;
+  }
+
+  /* Toggle chips: pressed state is colour + the check indicator, never colour alone. */
+  .toy-chip {
+    @apply inline-flex min-h-9 select-none items-center gap-1.5 whitespace-nowrap rounded-full border-2 border-line bg-paper px-3 py-1.5 text-xs font-bold text-ink-soft;
+    box-shadow: 0 3px 0 theme('colors.line');
+    transition:
+      transform 90ms ease-out,
+      box-shadow 90ms ease-out,
+      background-color 150ms ease-out;
+    touch-action: manipulation;
+  }
+
+  .toy-chip:hover {
+    @apply bg-cream;
+  }
+
+  .toy-chip:active {
+    transform: translateY(2px);
+    box-shadow: 0 1px 0 theme('colors.line');
+  }
+
+  .toy-chip[aria-pressed='true'] {
+    @apply border-leaf bg-mint text-ink;
+    box-shadow: 0 3px 0 theme('colors.leaf');
+  }
+
+  .toy-chip[aria-pressed='true']:active {
+    box-shadow: 0 1px 0 theme('colors.leaf');
+  }
+
+  .toy-seg {
+    @apply inline-flex items-center gap-1 rounded-full border-2 border-line bg-cream p-1;
+    box-shadow: inset 0 2px 0 rgb(var(--toy-ink-shadow) / 0.06);
+  }
+
+  .toy-seg-item {
+    @apply inline-flex min-h-9 select-none items-center justify-center gap-1.5 whitespace-nowrap rounded-full border-2 border-transparent px-3.5 py-1 text-sm font-bold text-ink-soft;
+    transition:
+      background-color 150ms ease-out,
+      color 150ms ease-out,
+      transform 90ms ease-out;
+    touch-action: manipulation;
+  }
+
+  .toy-seg-item:hover {
+    @apply bg-paper text-ink;
+  }
+
+  .toy-seg-item[aria-checked='true'] {
+    @apply border-coral-deep bg-coral text-ink;
+    box-shadow: 0 2px 0 theme('colors.coral-deep');
+  }
+
+  /* Pastel range slider for the time scrubber. Thumb is 28px for finger use. */
+  .toy-range {
+    @apply h-7 w-full cursor-pointer appearance-none bg-transparent;
+  }
+
+  /* Vendor pseudo-elements stay in separate rules (one unknown selector voids a list). The track edge is the slider's only boundary, so it keeps 3:1. */
+  .toy-range::-webkit-slider-runnable-track {
+    @apply h-3 rounded-full border-2 border-ink-soft/80 bg-cream;
+  }
+
+  .toy-range::-moz-range-track {
+    @apply h-3 rounded-full border-2 border-ink-soft/80 bg-cream;
+  }
+
+  .toy-range::-webkit-slider-thumb {
+    @apply -mt-2 h-7 w-7 appearance-none rounded-full border-2 border-coral-deep bg-coral;
+    box-shadow: 0 3px 0 theme('colors.coral-deep');
+  }
+
+  .toy-range::-moz-range-thumb {
+    @apply h-6 w-6 rounded-full border-2 border-coral-deep bg-coral;
+    box-shadow: 0 3px 0 theme('colors.coral-deep');
+  }
+
+  .toy-range:disabled {
+    @apply cursor-not-allowed opacity-50;
+  }
+
+  /* Loading placeholder; the shimmer is removed under reduced motion below. */
+  .toy-skeleton {
+    @apply rounded-xl;
+    background: linear-gradient(
+      100deg,
+      theme('colors.line / 60%') 30%,
+      theme('colors.paper') 50%,
+      theme('colors.line / 60%') 70%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+
+  .scroll-soft {
+    scrollbar-width: thin;
+    scrollbar-color: theme('colors.line') transparent;
+  }
+}
+
+@layer utilities {
+  /* Keep floating HUD away from the notch and home indicator. */
+  .pt-safe {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .pb-safe {
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .toy-skeleton {
+    animation: none;
+    background: theme('colors.line / 60%');
+  }
+
+  .toy-btn:active:not(:disabled),
+  .toy-chip:active {
+    transform: none;
+  }
+}
