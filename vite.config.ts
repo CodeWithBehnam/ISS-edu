@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { normaliseBasePath } from './build/base-path';
-import { cspMetaPlugin } from './build/csp';
+import { normaliseBasePath } from './build/base-path.ts';
+import { cspMetaPlugin } from './build/csp.ts';
 
 const REACT_VENDOR =
   /node_modules\/(react|react-dom|react-router|react-router-dom|@remix-run|scheduler|zustand|use-sync-external-store)\//;
@@ -30,7 +30,7 @@ export default defineConfig({
   plugins: [react(), cspMetaPlugin()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
+      '@': path.resolve(import.meta.dirname, './src'),
     },
   },
   build: {

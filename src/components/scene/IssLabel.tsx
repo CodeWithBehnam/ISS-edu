@@ -1,6 +1,6 @@
 import { Html } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Vector3, type Group } from 'three';
 
 import { formatAltitude } from '@/lib/format/units';
@@ -24,6 +24,11 @@ interface TextMemo {
 function Label() {
   const issFrame = useIssFrame();
   const camera = useThree((state) => state.camera);
+  // Html normally mounts against the canvas wrapper and remounts once the event system connects. Under
+  // React 19 the first root's deferred unmount then wipes the second one, so the label never shows.
+  // A container that is fixed from the first render means it mounts exactly once.
+  const container = useThree((state) => state.gl.domElement.parentElement);
+  const portal = useMemo(() => (container ? { current: container } : undefined), [container]);
   const anchor = useRef<Group>(null);
   const pill = useRef<HTMLDivElement>(null);
   const altitude = useRef<HTMLSpanElement>(null);
@@ -62,7 +67,7 @@ function Label() {
 
   return (
     <group ref={anchor}>
-      <Html center zIndexRange={[5, 0]} pointerEvents="none">
+      <Html center zIndexRange={[5, 0]} pointerEvents="none" portal={portal}>
         <div
           ref={pill}
           aria-hidden="true"

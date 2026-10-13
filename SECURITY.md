@@ -82,8 +82,13 @@ Out of scope:
 
 ## Known limitations
 
-The build toolchain is on Vite 5 and Vitest 1. Some advisories against them are only fixed in newer major
-versions. They concern the local dev server and the test runner (for example the Vitest UI server and the
-Vite dev server on Windows), not the static files that are deployed. Moving the toolchain across major
-versions has not been done yet. React Router 6 also has two advisories that are only fixed in version 7;
-they affect `<Link>`, `useNavigate` and server-side rendering, none of which this single-page app uses.
+`bun audit` reports two advisories, both in Tailwind CSS 3's build-time dependencies, not in anything that
+is deployed:
+
+- `braces` 3.0.3 (high, denial of service through deeply nested patterns): no patched release exists yet.
+- `postcss-selector-parser` (moderate, quadratic selector parsing): fixed only in version 7, which needs a
+  move to Tailwind CSS 4. The low-severity advisory in the same package is fixed by an override in
+  `package.json`.
+
+Both only ever process this project's own CSS and content globs at build time, never visitor input, so they
+cannot be reached through the site.

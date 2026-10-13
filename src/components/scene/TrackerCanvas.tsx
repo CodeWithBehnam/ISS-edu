@@ -84,7 +84,8 @@ export const TrackerCanvas = memo(function TrackerCanvas({ satrec, fallbackTelem
   return (
     <Canvas
       orthographic
-      shadows="soft"
+      // PCF: three.js r180+ removed PCFSoftShadowMap ("soft") and falls back to PCF with a warning.
+      shadows="percentage"
       dpr={[1, 2]}
       camera={CAMERA_PROPS}
       gl={GL_OPTIONS}
