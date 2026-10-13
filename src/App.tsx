@@ -6,13 +6,7 @@ const ROUTER_BASENAME = import.meta.env.BASE_URL.replace(/\/+$/, '') || undefine
 
 function App() {
   return (
-    <BrowserRouter
-      basename={ROUTER_BASENAME}
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+    <BrowserRouter basename={ROUTER_BASENAME}>
       <Routes>
         {/* TrackerApp renders its own <main>, so no wrapper element here. */}
         <Route path="/" element={<TrackerApp />} />
