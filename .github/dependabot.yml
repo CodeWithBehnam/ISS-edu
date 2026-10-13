@@ -18,6 +18,10 @@ updates:
           - "*"
     commit-message:
       prefix: "ci"
+    # Minor and patch updates only: major upgrades are planned by hand, not proposed weekly.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
 
   # Application dependencies. Dependabot reads bun.lock (the `bun` ecosystem needs Bun >= 1.1.39).
   - package-ecosystem: bun
@@ -54,6 +58,10 @@ updates:
           - patch
     commit-message:
       prefix: "chore(deps)"
+    # Minor and patch updates only: major upgrades are planned by hand, not proposed weekly.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
 
   # Base images pinned in the Dockerfile (Bun build stage and the nginx runtime stage).
   - package-ecosystem: docker
@@ -65,3 +73,7 @@ updates:
       default-days: 7
     commit-message:
       prefix: "chore(docker)"
+    # Minor and patch updates only: major upgrades are planned by hand, not proposed weekly.
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
