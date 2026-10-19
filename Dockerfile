@@ -12,7 +12,7 @@ FROM docker.io/library/node:26.10.0-alpine3.24 AS node
 
 # ---- Stage 1: build ---------------------------------------------------------
 # Same Bun version as local development, so bun.lock resolves identically.
-FROM docker.io/oven/bun:1.4.2-alpine AS build
+FROM docker.io/oven/bun:1.4.3-alpine AS build
 
 # Bun installs the packages and runs the scripts, but tsc and Vite should run on
 # Node, as they do on a developer machine. Without a node binary on PATH, `bun run`
