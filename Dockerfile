@@ -48,7 +48,7 @@ RUN bun run build
 # ---- Stage 2: runtime -------------------------------------------------------
 # nginx-unprivileged runs as uid 101 and listens on 8080, so the container needs
 # no capabilities. The slim variant omits modules that static hosting never uses.
-FROM docker.io/nginxinc/nginx-unprivileged:1.31.5-alpine3.24-slim AS runtime
+FROM docker.io/nginxinc/nginx-unprivileged:1.31.6-alpine3.24-slim AS runtime
 
 # Provenance labels. The base image carries its own revision, creation date, version, URL and
 # maintainer, which would otherwise be reported for this image, so each one is set here. Version,
